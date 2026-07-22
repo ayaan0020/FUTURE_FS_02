@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: mini-crm-backend
+    env: node
+    plan: free
+    buildCommand: npm install --prefix server
+    startCommand: npm start --prefix server
+    envVars:
+      - key: PORT
+        value: 5001
+      - key: JWT_SECRET
+        generateValue: true
+      - key: NODE_ENV
+        value: production

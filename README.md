@@ -1,4 +1,4 @@
-# Client Lead Management System (Mini CRM)
+# LeadFlow CRM — Client Lead Management System
 
 > **Task 2 - Full Stack Web Development (2026)**  
 > **Built by Future Interns** | **GitHub Repo:** [ayaan0020/FUTURE_FS_02](https://github.com/ayaan0020/FUTURE_FS_02)
@@ -19,6 +19,19 @@ This application solves these exact business challenges with a sleek, responsive
 
 ---
 
+## 🛠️ Tech Stack & Badges
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+![JSON Web Tokens](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-B738CF?style=for-the-badge&logo=vite&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+
+---
+
 ## ✨ Key Features
 
 - **🎯 Live Public Contact Form Simulator**: Embedded website contact widget that demonstrates real-time lead ingestion into the CRM via `POST /api/public/contact`.
@@ -32,22 +45,7 @@ This application solves these exact business challenges with a sleek, responsive
 
 ---
 
-## 🛠️ Tech Stack
-
-### Frontend
-- **Framework**: React 18 (Vite)
-- **UI & Icons**: Lucide React, Glassmorphism CSS Design System
-- **Theme**: Light & Dark mode toggle with custom CSS variables & Google Fonts (Inter & Outfit)
-
-### Backend
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Authentication**: JSON Web Tokens (`jsonwebtoken`), `bcryptjs`
-- **Database**: Dual Adapter — **SQLite** (via `sqlite3`) with optional **MongoDB** / Mongoose integration.
-
----
-
-## 🚀 Quick Start Guide
+## 🚀 Quick Start Guide (Local Development)
 
 ### Prerequisites
 - **Node.js**: v18.0 or higher
@@ -77,7 +75,41 @@ This application solves these exact business challenges with a sleek, responsive
 
 ---
 
-## 🔑 Admin Login Credentials
+## 🌐 Production Deployment Guide
+
+To deploy this full-stack application to production, follow these steps to connect your GitHub repository directly to Vercel (frontend) and Render (backend) with continuous integration (CI/CD).
+
+### Part 1: Deploy Backend REST API to Render
+1. Sign in to your **[Render Dashboard](https://dashboard.render.com/)**.
+2. Click **New +** and select **Web Service**.
+3. Connect your GitHub repository `https://github.com/ayaan0020/FUTURE_FS_02`.
+4. Configure the service settings:
+   - **Name**: `leadflow-crm-backend`
+   - **Environment**: `Node`
+   - **Build Command**: `npm install --prefix server`
+   - **Start Command**: `npm start --prefix server`
+5. Add the following **Environment Variables**:
+   - `PORT`: `5001`
+   - `JWT_SECRET`: `any-secure-random-secret-key`
+   - `NODE_ENV`: `production`
+6. Click **Deploy Web Service**.
+7. Once deployed, copy your backend URL (e.g., `https://leadflow-crm-backend.onrender.com`).
+
+### Part 2: Deploy Frontend React to Vercel
+1. Sign in to your **[Vercel Dashboard](https://vercel.com/)**.
+2. Click **Add New** and select **Project**.
+3. Import your GitHub repository `https://github.com/ayaan0020/FUTURE_FS_02`.
+4. Configure the project settings:
+   - **Framework Preset**: `Vite`
+   - **Root Directory**: `client` (Critical: Point this to the frontend subdirectory)
+5. Under **Environment Variables**, add:
+   - Key: `VITE_API_BASE_URL`
+   - Value: `<YOUR_RENDER_BACKEND_URL>/api` (e.g. `https://leadflow-crm-backend.onrender.com/api`)
+6. Click **Deploy**. Vercel will build the project and output your live frontend domain!
+
+---
+
+## 🔑 Admin Evaluation Credentials
 
 For quick evaluation, click the **"1-Click Quick Demo Login"** button on the login screen, or use:
 
@@ -99,10 +131,10 @@ For quick evaluation, click the **"1-Click Quick Demo Login"** button on the log
 | `POST` | `/api/auth/login` | Authenticate admin & receive JWT token |
 | `GET` | `/api/auth/me` | Fetch active user profile |
 
-### Lead Management Endpoints (Protected)
+### Lead Management Endpoints (Protected with JWT Header `Authorization: Bearer <token>`)
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | `/api/leads` | List leads (supports `?q=`, `status=`, `source=`) |
+| `GET` | `/api/leads` | List leads (supports search `?q=`, filter `?status=`, `?source=`) |
 | `GET` | `/api/leads/:id` | Get single lead with activity timeline |
 | `POST` | `/api/leads` | Create a lead manually |
 | `PUT` | `/api/leads/:id` | Full update lead information |
@@ -110,7 +142,7 @@ For quick evaluation, click the **"1-Click Quick Demo Login"** button on the log
 | `POST` | `/api/leads/:id/notes` | Add follow-up note / log activity |
 | `DELETE` | `/api/leads/:id` | Delete a lead record |
 
-### Analytics Endpoints (Protected)
+### Analytics Endpoints (Protected with JWT)
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
 | `GET` | `/api/analytics/summary` | Get CRM metrics, conversion rates, and acquisition breakdown |
@@ -134,8 +166,10 @@ For quick evaluation, click the **"1-Click Quick Demo Login"** button on the log
 │   │   ├── pages/          # DashboardPage, AnalyticsPage, PublicDemoPage, LoginPage
 │   │   ├── services/       # Fetch API wrapper
 │   │   └── index.css       # Design tokens & theme variables
-│   └── index.html
+│   ├── index.html
+│   └── vercel.json         # Vercel SPA Routing Configuration
 ├── package.json            # Root scripts (install:all, dev, seed)
+├── render.yaml             # Render Blueprint Configuration
 └── README.md
 ```
 

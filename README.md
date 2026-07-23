@@ -5,17 +5,13 @@
 
 ---
 
-## 🔍 About the Project
+## 🔗 Live Deployments
 
-**LeadFlow Mini CRM** is a lightweight, high-performance Client Lead Management System designed for agencies, freelancers, and startups. 
-
-Whenever a prospect fills out a contact form on a client website, business owners need a reliable workflow to:
-1. **Capture & Store** website leads automatically in a central database.
-2. **Track Pipeline Status** (`New` → `Contacted` → `In Progress` → `Converted` → `Lost`).
-3. **Log Follow-up Interactions** (Calls, Emails, Meetings, and Timestamped Notes).
-4. **Analyze Sales Metrics** (Conversion Ratios, Won Revenue, Acquisition Channels).
-
-This application solves these exact business challenges with a sleek, responsive React dashboard backed by a Node.js/Express REST API.
+- **🌐 Live Front-End (Vercel)**: [https://client-three-rho-98.vercel.app](https://client-three-rho-98.vercel.app)
+- **⚡ Live Back-End API (Render)**: [https://mini-crm-backend-5see.onrender.com/api/health](https://mini-crm-backend-5see.onrender.com/api/health)
+- **🔑 Admin Evaluation Credentials**:
+  - **Email**: `admin@crm.com`
+  - **Password**: `admin123` *(Or click the "1-Click Quick Demo Login" on the screen)*
 
 ---
 
@@ -24,9 +20,8 @@ This application solves these exact business challenges with a sleek, responsive
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
-![JSON Web Tokens](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
 ![SQLite](https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-B738CF?style=for-the-badge&logo=vite&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
 
@@ -93,7 +88,7 @@ To deploy this full-stack application to production, follow these steps to conne
    - `JWT_SECRET`: `any-secure-random-secret-key`
    - `NODE_ENV`: `production`
 6. Click **Deploy Web Service**.
-7. Once deployed, copy your backend URL (e.g., `https://leadflow-crm-backend.onrender.com`).
+7. Once deployed, copy your backend URL (e.g., `https://mini-crm-backend-5see.onrender.com`).
 
 ### Part 2: Deploy Frontend React to Vercel
 1. Sign in to your **[Vercel Dashboard](https://vercel.com/)**.
@@ -104,7 +99,7 @@ To deploy this full-stack application to production, follow these steps to conne
    - **Root Directory**: `client` (Critical: Point this to the frontend subdirectory)
 5. Under **Environment Variables**, add:
    - Key: `VITE_API_BASE_URL`
-   - Value: `<YOUR_RENDER_BACKEND_URL>/api` (e.g. `https://leadflow-crm-backend.onrender.com/api`)
+   - Value: `<YOUR_RENDER_BACKEND_URL>/api` (e.g. `https://mini-crm-backend-5see.onrender.com/api`)
 6. Click **Deploy**. Vercel will build the project and output your live frontend domain!
 
 ---

@@ -3,8 +3,8 @@ services:
     name: mini-crm-backend
     env: node
     plan: free
-    buildCommand: npm install --prefix server
-    startCommand: npm start --prefix server
+    buildCommand: npm install && npm run build
+    startCommand: npm start
     envVars:
       - key: PORT
         value: 5001

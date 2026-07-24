@@ -1,4 +1,7 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://mini-crm-backend-5see.onrender.com/api';
+let API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://mini-crm-backend-5see.onrender.com/api';
+if (API_BASE && !API_BASE.startsWith('/') && !API_BASE.endsWith('/api') && !API_BASE.includes('/api/')) {
+  API_BASE = API_BASE.endsWith('/') ? `${API_BASE}api` : `${API_BASE}/api`;
+}
 
 function getAuthHeader() {
   const token = localStorage.getItem('crm_token');
